@@ -9,19 +9,15 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        def reverse(head):
-            if head==None:
-                return
-            curr=reverse(head.next)
-            head.next=None 
-            if(curr==None):
-                return head
-            else:
-                val=curr
-                while(curr.next!=None):
-                    curr=curr.next
-                curr.next=head
-                return val
+        if(head is None or head.next is None):
+            return head
+        prev=None
+        while(head!=None and head.next!=None):
+            p1=head.next
+            head.next=prev
+            prev=head
+            head=p1
+        head.next=prev
+        return head
+            
 
-
-        return reverse(head)
